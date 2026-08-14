@@ -240,3 +240,102 @@
 **Phase 0 — Project Setup & Documentation: Completed**
 
 **Next Phase: Phase 1 — Data Cleaning**
+
+---
+
+## Day 5 — August 14, 2026
+
+**Phase:** Phase 1 — Data Cleaning
+
+### ✅ What I Did
+
+- Continued data-quality validation using `01_data_cleaning.ipynb`.
+- Investigated the `TotalCharges` column after identifying its `object` data type.
+- Checked for whitespace-only values in `TotalCharges`.
+- Identified 11 whitespace-only values.
+- Investigated all 11 affected customer records.
+- Confirmed that all 11 affected records had `tenure = 0`.
+- Treated the 11 whitespace-only `TotalCharges` values as 0 for analytical purposes.
+- Converted `TotalCharges` from `object` to `float64`.
+- Validated the `TotalCharges` transformation.
+- Checked all categorical variables for unexpected values.
+- Checked numeric variables for invalid ranges.
+- Checked for duplicate rows.
+- Checked for duplicate `customerID` values.
+- Checked logical consistency between related service variables.
+- Completed final data-quality validation.
+- Created the cleaned dataset and placed it in `data/processed/telco_cleaned.csv`.
+- Updated `assumptions_log.md` with the data-cleaning decisions.
+- Updated the Data Dictionary with the Phase 1 transformation summary.
+
+### 🔍 Findings
+
+- The dataset contains 7,043 customers and 21 columns.
+- No standard null values were identified.
+- No duplicate rows were identified.
+- No duplicate `customerID` values were identified.
+- 11 whitespace-only values were identified in `TotalCharges`.
+- All 11 affected records had `tenure = 0`.
+- No unexpected categorical values were identified.
+- Numeric values were within the expected observed ranges.
+- No logical inconsistencies were identified during the checks performed.
+- `TotalCharges` required conversion from `object` to `float64`.
+
+### ⚠️ Problem Faced
+
+The `TotalCharges` column was stored as `object` even though it represents a numeric monetary field.
+
+Additionally, 11 records contained whitespace-only values.
+
+### 💡 How I Solved It
+
+Instead of immediately replacing the values, I investigated the 11 affected records.
+
+All 11 records had `tenure = 0`, so the whitespace-only values were treated as 0 for analytical purposes.
+
+The column was then converted to `float64` and validated.
+
+### ⚡ Decisions
+
+- Only evidence-based data-quality issues were corrected.
+- No customer records were removed.
+- Valid categorical values such as `No internet service` and `No phone service` were retained.
+- Monetary values remain currency-neutral because the source dataset does not specify a currency.
+- No unnecessary transformations were applied.
+
+### 🔎 Validation
+
+| Validation Check | Result |
+|---|---:|
+| Dataset rows | 7,043 |
+| Dataset columns | 21 |
+| Null values | 0 |
+| Blank `TotalCharges` values after cleaning | 0 |
+| Duplicate rows | 0 |
+| Duplicate `customerID` values | 0 |
+| `TotalCharges` data type | `float64` |
+| Unexpected categorical values | None identified |
+| Invalid numeric ranges | None identified |
+| Logical inconsistencies | None identified |
+
+### 📁 Phase 1 Outputs
+
+- `notebooks/01_data_cleaning.ipynb`
+- `data/processed/telco_cleaned.csv`
+- Updated `docs/data_dictionary.md`
+- Updated `docs/assumptions_log.md`
+
+### 🏁 Phase Completion
+
+**Phase 1 — Data Cleaning: COMPLETE ✅**
+
+The cleaned dataset has passed the planned data-quality checks and is ready for exploratory data analysis.
+
+### 🎯 Next
+
+- Begin **Phase 2 — Exploratory Data Analysis (EDA)**.
+- Analyze the distribution of churn.
+- Investigate churn across contract type and tenure.
+- Begin recording evidence-based findings in `insights_log.md`.
+
+---

@@ -234,3 +234,40 @@ transformations.
 
 It will be updated again after the cleaned dataset and engineered features
 are created.
+
+---
+
+## 10. Phase 1 Cleaning Transformation Summary
+
+The raw dataset was profiled before transformation. The following cleaning
+decision was applied during Phase 1.
+
+| Column | Raw Data Type | Final Data Type | Issue Identified | Transformation |
+|---|---|---|---|---|
+| `TotalCharges` | object | float64 | 11 whitespace-only values and numeric values stored as text | Replaced 11 whitespace-only values with 0 and converted the column to numeric |
+
+### Validation
+
+After transformation:
+
+- Row count remained 7,043.
+- Column count remained 21.
+- `TotalCharges` data type became `float64`.
+- No null values remained.
+- No blank `TotalCharges` values remained.
+- No duplicate rows were introduced.
+- No duplicate customer IDs were introduced.
+
+### Raw vs Cleaned State
+
+| Attribute | Raw Dataset | Cleaned Dataset |
+|---|---:|---:|
+| Rows | 7,043 | 7,043 |
+| Columns | 21 | 21 |
+| `TotalCharges` dtype | object | float64 |
+| Blank `TotalCharges` values | 11 | 0 |
+| Null values | 0 | 0 |
+| Duplicate rows | 0 | 0 |
+| Duplicate customer IDs | 0 | 0 |
+
+No customer records were removed during Phase 1.
